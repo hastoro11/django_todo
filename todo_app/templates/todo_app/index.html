@@ -1,7 +1,131 @@
 {% extends 'base.html' %}
-
+{% block navbar %}
+{% include 'todo_app/nav.html' %}
+{% endblock %}
 {% block content %}
-  <div class="row">
-    <h1>Hello App</h1>
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">To Do List</h1>
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-body">
+            <form id="todo-form">
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Add new task">
+                <button class="btn btn-primary" type="submit">Add</button>
+              </div>
+            </form>
+            <ul class="list-group" id="todo-list">
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span class="">Task 1</span>
+                <input type="text" class="form-control" style="display: none;" value="">
+                <div class="btn-group">
+                  <button class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-xmark"></i></button>
+                  <button class="btn btn-outline-success btn-sm"><i class="fa-solid fa-check"></i></button>
+                  <button class="btn btn-outline-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></button>
+                </div>
+              </li>              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span class="text-decoration-line-through">Task 2</span>
+                <input type="text" class="form-control" style="display: none;" value="">
+                <div class="btn-group">
+                  <button class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-xmark"></i></button>
+                  <button class="btn btn-success btn-sm"><i class="fa-solid fa-check"></i></button>
+                  <button class="btn btn-outline-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></button>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+  {#  <section class="vh-100" style="background-color: #e2d5de;">#}
+  {#    <div class="container py-5 h-100">#}
+  {#      <div class="row d-flex justify-content-center align-items-center h-100">#}
+  {#        <div class="col col-xl-10">#}
+  {##}
+  {#          <div class="card" style="border-radius: 15px;">#}
+  {#            <div class="card-body p-5">#}
+  {##}
+  {#              <h5 class="mb-3">Awesome Todo List</h5>#}
+  {##}
+  {#              <form class="d-flex justify-content-center align-items-center mb-4">#}
+  {#                <div data-mdb-input-init class="form-outline flex-fill">#}
+  {#                  <textarea name="title" class="form-control form-control-lg" placeholder="What do you need to do today?"></textarea>#}
+  {#                </div>#}
+  {#                <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg ms-2">#}
+  {#                  Add#}
+  {#                </button>#}
+  {#              </form>#}
+  {##}
+  {#              <ul class="list-group mb-0">#}
+  {#                <li#}
+  {#                    class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">#}
+  {#                  <div class="d-flex align-items-center">#}
+  {#                    <input class="form-check-input me-2" type="checkbox" value="" aria-label="..."/>#}
+  {#                    Cras justo odio#}
+  {#                  </div>#}
+  {#                  <a href="#!" data-mdb-tooltip-init title="Remove item">#}
+  {#                    <i class="fas fa-times text-primary"></i>#}
+  {#                  </a>#}
+  {#                </li>#}
+  {#                <li#}
+  {#                    class="list-group-item d-flex d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">#}
+  {#                  <div class="d-flex align-items-center">#}
+  {#                    <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." checked/>#}
+  {#                    <s>Dapibus ac facilisis in</s>#}
+  {#                  </div>#}
+  {#                  <a href="#!" data-mdb-tooltip-init title="Remove item">#}
+  {#                    <i class="fas fa-times text-primary"></i>#}
+  {#                  </a>#}
+  {#                </li>#}
+  {#                <li#}
+  {#                    class="list-group-item d-flex d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">#}
+  {#                  <div class="d-flex align-items-center">#}
+  {#                    <input class="form-check-input me-2" type="checkbox" value="" aria-label="..."/>#}
+  {#                    Morbi leo risus#}
+  {#                  </div>#}
+  {#                  <a href="#!" data-mdb-tooltip-init title="Remove item">#}
+  {#                    <i class="fas fa-times text-primary"></i>#}
+  {#                  </a>#}
+  {#                </li>#}
+  {#                <li#}
+  {#                    class="list-group-item d-flex d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">#}
+  {#                  <div class="d-flex align-items-center">#}
+  {#                    <input class="form-check-input me-2" type="checkbox" value="" aria-label="..."/>#}
+  {#                    Porta ac consectetur ac#}
+  {#                  </div>#}
+  {#                  <a href="#!" data-mdb-tooltip-init title="Remove item">#}
+  {#                    <i class="fas fa-times text-primary"></i>#}
+  {#                  </a>#}
+  {#                </li>#}
+  {#                <li#}
+  {#                    class="list-group-item d-flex d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-0">#}
+  {#                  <div class="d-flex align-items-center">#}
+  {#                    <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." checked/>#}
+  {#                    Vestibulum at eros#}
+  {#                  </div>#}
+  {#                  <a href="#!" data-mdb-tooltip-init title="Remove item">#}
+  {#                    <i class="fas fa-times text-primary"></i>#}
+  {#                  </a>#}
+  {#                </li>#}
+  {#                <li#}
+  {#                    class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">#}
+  {#                  <div class="d-flex align-items-center">#}
+  {#                    <input class="form-check-input me-2" type="checkbox" value="" aria-label="..."/>#}
+  {#                    Morbi leo risus#}
+  {#                  </div>#}
+  {#                  <a href="#!" data-mdb-tooltip-init title="Remove item">#}
+  {#                    <i class="fas fa-times text-primary"></i>#}
+  {#                  </a>#}
+  {#                </li>#}
+  {#              </ul>#}
+  {##}
+  {#            </div>#}
+  {#          </div>#}
+  {##}
+  {#        </div>#}
+  {#      </div>#}
+  {#    </div>#}
+  {#  </section>#}
 {% endblock %}
