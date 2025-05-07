@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block navbar %}
+  {% include 'todo_app/nav.html' %}
+{% endblock %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">Login Successful</h1>
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <p>You can go to <a href="{% url 'todo_app:home' %}">Home</a> now</p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
