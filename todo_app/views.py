@@ -7,13 +7,17 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 from .forms import LoginForm
+from .models import TODO
 
 
 class HomeView(LoginRequiredMixin, View):
     login_url = reverse_lazy('todo_app:login')
 
     def get(self, request):
-        return render(request, 'todo_app/index.html')
+        todos = TODO.objects.filter(user=request.user).order_by('-created_at')
+        return render(request, 'todo_app/index.html', {
+            'todos': todos
+        })
 
 
 class LoginView(View):
