@@ -1,2 +1,1 @@
-# django_todo
-Django Todo app
+# A simple todo app with django
