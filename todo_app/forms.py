@@ -15,3 +15,10 @@ class LoginForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.add_input(Submit('submit', 'Login'))
+
+
+class TODOForm(forms.Form):
+    title = forms.CharField(max_length=128, label='', widget=forms.TextInput(attrs={
+        'placeholder': 'Add new task',
+        'class': 'form-control'
+    }))

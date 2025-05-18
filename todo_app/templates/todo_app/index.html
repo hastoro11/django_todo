@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags crispy_forms_filters %}
 {% block navbar %}
   {% include 'todo_app/nav.html' %}
 {% endblock %}
@@ -9,25 +10,35 @@
       <div class="col-md-8">
         <div class="card">
           <div class="card-body">
-            <form id="todo-form">
+            <form id="todo-form" method="post" action="{% url 'todo_app:add_todo' %}">
+              {% csrf_token %}
               <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Add new task">
+                {% for field in todo_form %}
+                  {{ field }}
+                {% endfor %}
+                {#<input type="text" class="form-control" placeholder="Add new task">#}
                 <button class="btn btn-primary" type="submit">Add</button>
               </div>
             </form>
-            <ul class="list-group" id="todo-list">
-              {% for todo in todos %}
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                  <span class="">{{ todo.title }}</span>
-                  <input type="text" class="form-control" style="display: none;" value="">
-                  <div class="btn-group">
-                    <button class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-xmark"></i></button>
-                    <button class="btn btn{% if not todo.completed %}-outline{% endif %}-success btn-sm"><i class="fa-solid fa-check"></i></button>
-                    <button class="btn btn-outline-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></button>
-                  </div>
-                </li>
-              {% endfor %}
-            </ul>
+            {% if todos %}
+              <ul class="list-group" id="todo-list">
+                {% for todo in todos %}
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span class=" {% if todo.archived %} text-decoration-line-through text-secondary {% endif %}">{{ todo.title }}</span>
+                    <input type="text" class="form-control" style="display: none;" value="">
+                    <div class="btn-group">
+                      <a href="{% url 'todo_app:delete_todo' todo.id %}" class="btn btn{% if not todo.archived %}-outline{% endif %}-danger btn-sm"><i
+                          class="fa-solid fa-xmark"></i></a>
+                      <a href="{% url 'todo_app:complete_todo' todo.id %}"
+                         class="btn btn{% if not todo.completed %}-outline{% endif %}-success btn-sm"><i
+                          class="fa-solid fa-check"></i></a>
+                      <a href="{% url 'todo_app:edit_todo' todo.id %}" class="btn btn-outline-warning btn-sm"><i
+                          class="fa-solid fa-pen-to-square"></i></a>
+                    </div>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
           </div>
         </div>
       </div>
